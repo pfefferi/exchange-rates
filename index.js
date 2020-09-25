@@ -13,47 +13,34 @@
 const $button = $('button');
 
 $($button).on('click', () => {
-    getRatesAJAX();
+    baseUrl = getBase();
+    getRates(baseUrl);
 });
 
-// function getRates() {
-//     fetch('https://api.exchangeratesapi.io/latest')
-//         .then((response) => response.json())
-//         .then((response) => {
-//             $result = $('#result');
-//             $result.text(JSON.stringify(response));
-//             //showResults(response)
-//         })
-//         .catch((error) => console.log('error', error));
-// }
-
-function getRatesAJAX() {
+function getRates(baseUrl) {
     $.ajax({
         method: 'GET',
-        url: 'https://api.exchangeratesapi.io/latest',
+        url: baseUrl,
         success: (response) => {
-            $result = $('#result');
-            $result.text(JSON.stringify(response));
+            showReults(response);
         },
     });
 }
 
 function showReults(response) {
-    $result = $('#result');
-    $result.html(`<li>${JSON.stringify(response)}</li>`);
+    const $result = $('#result');
+    rates = '';
+    const keys = Object.keys(response['rates']);
+    keys.forEach((key) => {
+        rates += `${key}: ${response['rates'][key]};</br> `;
+    });
+    $result.html(`Base:${response['base']} </br>${rates}`);
 }
 
-const response = {
-    rates: {
-        CAD: 1.56,
-        HKD: 9.025,
-    },
-    base: 'EUR',
-    date: '2020-09-24',
-};
+function getBase() {
+    const $base = $('#base')[0].value;
+    console.log($base);
 
-/*
-
-
-
-*/
+    baseUrl = `https://api.exchangeratesapi.io/latest?base=${$base}`;
+    return baseUrl;
+}
