@@ -1,0 +1,25 @@
+{
+    "name": "exchange-rates",
+    "version": "1.0.0",
+    "description": "App that shows historical exchange rates given two parameters: the date (since 1999-01-01) and a base currency.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Lisandro Scarrone",
+    "license": "ISC",
+    "dependencies": {
+        "jquery": "^3.5.1"
+    },
+    "devDependencies": {
+        "@types/jquery": "^3.5.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pfefferi/exchange-rates.git"
+    },
+    "bugs": {
+        "url": "https://github.com/pfefferi/exchange-rates/issues"
+    },
+    "homepage": "https://github.com/pfefferi/exchange-rates#readme"
+}
