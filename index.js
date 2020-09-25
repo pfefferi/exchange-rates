@@ -13,14 +13,15 @@
 const $button = $('button');
 
 $($button).on('click', () => {
-    baseUrl = getBase();
-    getRates(baseUrl);
+    date = getDate();
+    base = getBase();
+    getRates(date, base);
 });
 
-function getRates(baseUrl) {
+function getRates(date, base) {
     $.ajax({
         method: 'GET',
-        url: baseUrl,
+        url: `https://api.exchangeratesapi.io/${date}?base=${base}`,
         success: (response) => {
             showReults(response);
         },
@@ -40,7 +41,11 @@ function showReults(response) {
 function getBase() {
     const $base = $('#base')[0].value;
     console.log($base);
+    return $base;
+}
 
-    baseUrl = `https://api.exchangeratesapi.io/latest?base=${$base}`;
-    return baseUrl;
+function getDate() {
+    const $date = $('#date')[0].value;
+    console.log($date);
+    return $date;
 }
